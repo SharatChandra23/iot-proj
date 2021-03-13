@@ -1,13 +1,13 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header>
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Temperature
-                </div>
-                <div class="card-body">
-                    <!-- <canvas
+  <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header>
+  <div class="row">
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          Temperature
+        </div>
+        <div class="card-body">
+          <!-- <canvas
                         (chartClick)="chartClicked($event)"
                         (chartHover)="chartHovered($event)"
                         [chartType]="barChartType"
@@ -18,20 +18,20 @@
                         baseChart
                     >
                     </canvas> -->
-                    <app-gauge-chart chartId="temperature-gauge"></app-gauge-chart>
-                </div>
-                <div class="card-footer">
-                    <button (click)="randomize()" class="btn btn-info btn-sm">Update</button>
-                </div>
-            </div>
+          <app-gauge-chart chartId="temperature-gauge"></app-gauge-chart>
         </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                   Humidity
-                </div>
-                <div class="card-body">
-                    <!-- <canvas
+        <div class="card-footer">
+          <button (click)="randomize()" class="btn btn-info btn-sm">Update</button>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          Humidity
+        </div>
+        <div class="card-body">
+          <!-- <canvas
                         (chartClick)="chartClicked($event)"
                         (chartHover)="chartHovered($event)"
                         [chartType]="doughnutChartType"
@@ -41,19 +41,19 @@
                         height="180px"
                     >
                     </canvas> -->
-                    <app-gauge-chart chartId="humidity-gauge"></app-gauge-chart>
-                </div>
-            </div>
+          <app-gauge-chart chartId="humidity-gauge"></app-gauge-chart>
         </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                   Temperature
-                </div>
-                <div class="card-body">
-                    <!-- <canvas
+  </div>
+  <div class="row">
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          Temperature
+        </div>
+        <div class="card-body">
+          <!-- <canvas
                         (chartClick)="chartClicked($event)"
                         (chartHover)="chartHovered($event)"
                         [chartType]="radarChartType"
@@ -63,17 +63,17 @@
                         height="150px"
                     >
                     </canvas> -->
-                    <app-line-chart [data]="d3LineChartData"></app-line-chart>
-                </div>
-            </div>
+          <app-line-chart [data]="d3LineChartData"></app-line-chart>
         </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                   Humidity
-                </div>
-                <div class="card-body">
-                    <!-- <canvas
+      </div>
+    </div>
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          Humidity
+        </div>
+        <div class="card-body">
+          <!-- <canvas
                         (chartClick)="chartClicked($event)"
                         (chartHover)="chartHovered($event)"
                         [chartType]="pieChartType"
@@ -83,10 +83,23 @@
                         height="150px"
                     >
                     </canvas> -->
-                    <app-line-chart [data]="d3LineChartData"></app-line-chart>
-                </div>
-            </div>
+          <app-line-chart [data]="d3LineChartData"></app-line-chart>
         </div>
+      </div>
     </div>
-    
+  </div>
+  <div class="row">
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="onMapClick($event)">
+          <agm-marker *ngIf="mapClicked" [latitude]="clickedLat" [longitude]="clickedLng"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div>{{time}}</div>
+      </div>
+    </div>
+  </div>
 </div>
