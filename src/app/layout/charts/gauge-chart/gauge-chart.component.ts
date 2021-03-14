@@ -27,7 +27,7 @@ export class GaugeChartComponent implements OnInit {
         clipWidth: 300,
         clipHeight: 300,
         ringWidth: 60,
-        maxValue: 10,
+        maxValue: 100,
         transitionMs: 4000,
       });
       powerGauge.render(6);
@@ -50,7 +50,7 @@ export class GaugeChartComponent implements OnInit {
       pointerHeadLengthPercent: 0.9,
 
       minValue: 0,
-      maxValue: 10,
+      maxValue: 100,
 
       minAngle: -90,
       maxAngle: 90,
@@ -61,7 +61,7 @@ export class GaugeChartComponent implements OnInit {
       labelFormat: d3.format('d'),
       labelInset: 10,
 
-      arcColorFn: d3.interpolateHsl(d3.rgb('#e8e2ca'), d3.rgb('#3e6c0a'))
+      arcColorFn: d3.interpolateHsl(d3.rgb('#ffa500'), d3.rgb('#ba7800'))
     };
     var range = undefined;
     var r = undefined;
