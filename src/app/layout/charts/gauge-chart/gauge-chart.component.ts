@@ -24,8 +24,8 @@ export class GaugeChartComponent implements OnInit {
     setTimeout(() => {
       let powerGauge = this.gauge('#' + this.chartId, { // #power-gauge
         size: 300,
-        clipWidth: 300,
-        clipHeight: 300,
+        clipWidth: '100%',
+        clipHeight: 200,
         ringWidth: 60,
         maxValue: 100,
         transitionMs: 4000,
@@ -40,7 +40,7 @@ export class GaugeChartComponent implements OnInit {
 
     let config = {
       size: 710,
-      clipWidth: 200,
+      clipWidth: '100%',
       clipHeight: 110,
       ringInset: 20,
       ringWidth: 20,

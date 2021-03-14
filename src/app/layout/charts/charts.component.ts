@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import * as moment from "moment-mini-ts";
 
 @Component({
   selector: 'app-charts',
@@ -8,6 +9,15 @@ import { routerTransition } from '../../router.animations';
   animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
+  lat: any = 17.3850;
+  lng: any = 78.4867;
+  zoom: number = 10;
+  mapClicked: boolean = false;
+  clickedLat: number = null;
+  clickedLng: number = null;
+  timeInterval: any = null;
+  time: any = null;
+  date: any = null;
   // bar chart
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -98,29 +108,34 @@ export class ChartsComponent implements OnInit {
   public lineChartLegend: boolean;
   public lineChartType: string;
 
-  clock = {  time: '',  date: '' };
+  clock = { time: '', date: '' };
 
-  constructor() { }
+  constructor() {
+    this.timeInterval = setInterval(() => {
+      this.time = moment(new Date).format('hh:mm:ss');
+      this.date = moment(new Date).format('MM/DD/YYYY');
+    }, 500)
+  }
 
   // clock code strat here
 
   updateTime() {
     let upTime = () => {
       // let  week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-      let  zeroPadding = (num, digit) => {
+      let zeroPadding = (num, digit) => {
         var zero = '';
         for (var i = 0; i < digit; i++) {
           zero += '0';
         }
         return (zero + num).slice(-digit);
       }
-  
+
       let cd = new Date();
       this.clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
-      this.clock.date =  zeroPadding(cd.getMonth() + 1, 2) + '/' + zeroPadding(cd.getDate(), 2) + '/' + zeroPadding(cd.getFullYear(), 4);//+ week[cd.getDay()];
-  
+      this.clock.date = zeroPadding(cd.getMonth() + 1, 2) + '/' + zeroPadding(cd.getDate(), 2) + '/' + zeroPadding(cd.getFullYear(), 4);//+ week[cd.getDay()];
+
     };
-  
+
     setInterval(upTime, 1);
   }
 
@@ -150,7 +165,7 @@ export class ChartsComponent implements OnInit {
   ngOnInit() {
 
     // let timerID =
-    
+
     this.updateTime();
 
     this.barChartType = 'bar';
@@ -177,6 +192,15 @@ export class ChartsComponent implements OnInit {
         "date": "2020-07-12 06:20:20"
       }
     ];
+  }
+
+
+  onMapClick(event) {
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timeInterval);
+    this.timeInterval = null;
   }
 
 }
