@@ -9,12 +9,8 @@ import * as moment from "moment-mini-ts";
   animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
-  lat: any = 17.3850;
-  lng: any = 78.4867;
-  zoom: number = 10;
-  mapClicked: boolean = false;
-  clickedLat: number = null;
-  clickedLng: number = null;
+ 
+  tempGaugeData: any[] = [];
   timeInterval: any = null;
   time: any = null;
   date: any = null;
@@ -192,10 +188,6 @@ export class ChartsComponent implements OnInit {
         "date": "2020-07-12 06:20:20"
       }
     ];
-  }
-
-
-  onMapClick(event) {
   }
 
   ngOnDestroy() {

@@ -12,6 +12,7 @@ export class GaugeChartComponent implements OnInit {
 
   gaugemap: any = {};
   @Input() chartId: string = '';
+  @Input() data: any[] = [];
 
   constructor() { }
 
@@ -23,7 +24,7 @@ export class GaugeChartComponent implements OnInit {
     console.log(this.chartId);
     setTimeout(() => {
       let powerGauge = this.gauge('#' + this.chartId, { // #power-gauge
-        size: 300,
+        size: 348,
         clipWidth: '100%',
         clipHeight: 200,
         ringWidth: 60,
@@ -158,7 +159,7 @@ export class GaugeChartComponent implements OnInit {
         .attr('transform', function (d) {
           var ratio = scale(d);
           var newAngle = config.minAngle + (ratio * range);
-          return 'rotate(' + newAngle + ') translate(0,' + (config.labelInset - r) + ')';
+          return 'rotate(' + newAngle + ') translate(-5,' + (config.labelInset - r + 5) + ')';
         })
         .text(config.labelFormat);
 
