@@ -8,12 +8,12 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             // { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
-            { path: '', redirectTo: 'charts', pathMatch: 'prefix' },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' }, // charts
             // {
             //     path: 'dashboard',
             //     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
-            // },
-            { path: 'charts', loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule) },
+            // },  charts
+            { path: 'dashboard', loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule) },
         ]
     }
 ];
