@@ -9,14 +9,11 @@ import * as moment from "moment-mini-ts";
   animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
-  lat: any = 17.3850;
-  lng: any = 78.4867;
-  zoom: number = 10;
-  mapClicked: boolean = false;
-  clickedLat: number = null;
-  clickedLng: number = null;
+ 
+  tempGaugeData: any[] = [];
   timeInterval: any = null;
   time: any = null;
+  date: any = null;
   // bar chart
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -107,10 +104,35 @@ export class ChartsComponent implements OnInit {
   public lineChartLegend: boolean;
   public lineChartType: string;
 
+  clock = { time: '', date: '' };
+
   constructor() {
     this.timeInterval = setInterval(() => {
       this.time = moment(new Date).format('hh:mm:ss');
+      this.date = moment(new Date).format('MM/DD/YYYY');
     }, 500)
+  }
+
+  // clock code strat here
+
+  updateTime() {
+    let upTime = () => {
+      // let  week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+      let zeroPadding = (num, digit) => {
+        var zero = '';
+        for (var i = 0; i < digit; i++) {
+          zero += '0';
+        }
+        return (zero + num).slice(-digit);
+      }
+
+      let cd = new Date();
+      this.clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+      this.clock.date = zeroPadding(cd.getMonth() + 1, 2) + '/' + zeroPadding(cd.getDate(), 2) + '/' + zeroPadding(cd.getFullYear(), 4);//+ week[cd.getDay()];
+
+    };
+
+    setInterval(upTime, 1);
   }
 
   // events
@@ -137,6 +159,11 @@ export class ChartsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // let timerID =
+
+    this.updateTime();
+
     this.barChartType = 'bar';
     this.barChartLegend = true;
     this.doughnutChartType = 'doughnut';
@@ -150,159 +177,22 @@ export class ChartsComponent implements OnInit {
     this.d3LineChartData = [
       {
         "value": 20,
-        "date": "2020-05-12T12:19:00+00:00"
+        "date": "2020-05-12 06:20:20"
       },
       {
         "value": 50,
-        "date": "2020-05-14T12:19:00+00:00"
-      },
-      {
-        "value": 30,
-        "date": "2020-05-16T12:19:00+00:00"
+        "date": "2020-06-12 06:20:20"
       },
       {
         "value": 80,
-        "date": "2020-05-18T12:19:00+00:00"
-      },
-      {
-        "value": 55,
-        "date": "2020-05-20T12:19:00+00:00"
-      },
-      {
-        "value": 60,
-        "date": "2020-05-22T12:19:00+00:00"
-      },
-      {
-        "value": 45,
-        "date": "2020-05-24T12:19:00+00:00"
-      },
-      {
-        "value": 30,
-        "date": "2020-05-26T12:19:00+00:00"
-      },
-      {
-        "value": 40,
-        "date": "2020-05-28T12:19:00+00:00"
-      },
-      {
-        "value": 70,
-        "date": "2020-05-30T12:19:00+00:00"
-      },
-      {
-        "value": 63,
-        "date": "2020-06-01T12:19:00+00:00"
-      },
-      {
-        "value": 40,
-        "date": "2020-06-03T12:19:00+00:00"
-      },
-      {
-        "value": 50,
-        "date": "2020-06-05T12:19:00+00:00"
-      },
-      {
-        "value": 75,
-        "date": "2020-06-07T12:19:00+00:00"
-      },
-      {
-        "value": 20,
-        "date": "2020-06-09T12:19:00+00:00"
-      },
-      {
-        "value": 50,
-        "date": "2020-06-11T12:19:00+00:00"
-      },
-      {
-        "value": 80,
-        "date": "2020-06-13T12:19:00+00:00"
-      },
-      {
-        "value": 75,
-        "date": "2020-06-15T12:19:00+00:00"
-      },
-      {
-        "value": 82,
-        "date": "2020-06-17T12:19:00+00:00"
-      },
-      {
-        "value": 55,
-        "date": "2020-06-19T12:19:00+00:00"
-      },
-      {
-        "value": 35,
-        "date": "2020-06-21T12:19:00+00:00"
-      },
-      {
-        "value": 34,
-        "date": "2020-06-23T12:19:00+00:00"
-      },
-      {
-        "value": 45,
-        "date": "2020-06-25T12:19:00+00:00"
-      },
-      {
-        "value": 58,
-        "date": "2020-06-27T12:19:00+00:00"
-      },
-      {
-        "value": 34,
-        "date": "2020-06-29T12:19:00+00:00"
-      },
-      {
-        "value": 60,
-        "date": "2020-07-01T12:19:00+00:00"
-      },
-      {
-        "value": 75,
-        "date": "2020-07-03T12:19:00+00:00"
-      },
-      {
-        "value": 80,
-        "date": "2020-07-05T12:19:00+00:00"
-      },
-      {
-        "value": 29,
-        "date": "2020-07-07T12:19:00+00:00"
-      },
-      {
-        "value": 40,
-        "date": "2020-07-09T12:19:00+00:00"
-      },
-      {
-        "value": 54,
-        "date": "2020-07-11T12:19:00+00:00"
-      },
-      {
-        "value": 67,
-        "date": "2020-07-13T12:19:00+00:00"
-      },
-      {
-        "value": 90,
-        "date": "2020-07-15T12:19:00+00:00"
-      },
-      {
-        "value": 84,
-        "date": "2020-07-17T12:19:00+00:00"
-      },
-      {
-        "value": 43,
-        "date": "2020-07-19T12:19:00+00:00"
+        "date": "2020-07-12 06:20:20"
       }
     ];
   }
 
-  onMapClick(event) {
-    // console.log("EVENT: ", event);
-    // console.log(typeof(event));
-  }
-
   ngOnDestroy() {
-    console.log("Interval: ", this.timeInterval);
     clearInterval(this.timeInterval);
     this.timeInterval = null;
-    setTimeout(() => {
-      console.log("Interval: ", this.timeInterval);
-    }, 100);
   }
 
 }

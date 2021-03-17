@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
+import { ClockComponent } from './shared/clock/clock.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,7 @@ import { LanguageTranslationModule } from './shared/modules/language-translation
         LanguageTranslationModule,
         AppRoutingModule
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, ClockComponent],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
 })

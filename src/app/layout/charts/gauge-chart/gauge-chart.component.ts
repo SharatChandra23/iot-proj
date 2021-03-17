@@ -12,6 +12,7 @@ export class GaugeChartComponent implements OnInit {
 
   gaugemap: any = {};
   @Input() chartId: string = '';
+  @Input() data: any[] = [];
 
   constructor() { }
 
@@ -23,11 +24,11 @@ export class GaugeChartComponent implements OnInit {
     console.log(this.chartId);
     setTimeout(() => {
       let powerGauge = this.gauge('#' + this.chartId, { // #power-gauge
-        size: 300,
-        clipWidth: 300,
-        clipHeight: 300,
+        size: 348,
+        clipWidth: '100%',
+        clipHeight: 200,
         ringWidth: 60,
-        maxValue: 10,
+        maxValue: 100,
         transitionMs: 4000,
       });
       powerGauge.render(6);
@@ -40,7 +41,7 @@ export class GaugeChartComponent implements OnInit {
 
     let config = {
       size: 710,
-      clipWidth: 200,
+      clipWidth: '100%',
       clipHeight: 110,
       ringInset: 20,
       ringWidth: 20,
@@ -50,7 +51,7 @@ export class GaugeChartComponent implements OnInit {
       pointerHeadLengthPercent: 0.9,
 
       minValue: 0,
-      maxValue: 10,
+      maxValue: 100,
 
       minAngle: -90,
       maxAngle: 90,
@@ -61,7 +62,7 @@ export class GaugeChartComponent implements OnInit {
       labelFormat: d3.format('d'),
       labelInset: 10,
 
-      arcColorFn: d3.interpolateHsl(d3.rgb('#e8e2ca'), d3.rgb('#3e6c0a'))
+      arcColorFn: d3.interpolateHsl(d3.rgb('#ffa500'), d3.rgb('#ba7800'))
     };
     var range = undefined;
     var r = undefined;
@@ -158,7 +159,7 @@ export class GaugeChartComponent implements OnInit {
         .attr('transform', function (d) {
           var ratio = scale(d);
           var newAngle = config.minAngle + (ratio * range);
-          return 'rotate(' + newAngle + ') translate(0,' + (config.labelInset - r) + ')';
+          return 'rotate(' + newAngle + ') translate(-5,' + (config.labelInset - r + 5) + ')';
         })
         .text(config.labelFormat);
 
